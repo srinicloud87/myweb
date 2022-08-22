@@ -27,13 +27,13 @@
 	
 	<distributionManagement>
 		 <snapshotRepository>
-		    <id>nexusRepo</id>
-		    <url>http://13.112.136.123:8081/repository/sample-snapshots/</url>
+		    <id>nexus</id>
+		    <url>http://13.238.255.153:8081/repository/maven-snapshots/</url>
 		 </snapshotRepository>
 		
 		<repository>
-		    <id>nexusRepo</id>
-		    <url>http://13.112.136.123:8081/repository/sample-releases/</url>
+		    <id>nexus</id>
+		    <url>http://13.238.255.153:8081/repository/maven-releases/</url>
 		</repository>
   	</distributionManagement>
 	
