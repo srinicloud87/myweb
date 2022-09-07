@@ -42,13 +42,13 @@ pipeline{
             steps{
                  sh 'docker build -t baddam/spring-boot-mongo .'
                  sh 'docker build -t tomcat:${BUILD_NUMBER} .'
-                 sh 'docker run -itd --name D1 -p 4080:8080 tomcat:${BUILD_NUMBER}'
+                 sh 'docker run -itd --name v -p 7070:8080 tomcat:${BUILD_NUMBER}'
              }
          }
         stage('Push Docker Image'){
              steps{
-                  withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIAL1', variable: 'DOCKER_HUB_CREDENTIAL1')]) {
-                      sh "docker login -u baddam -p ${DOCKER_HUB_CREDENTIAL1}"
+                  withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIAL2', variable: 'DOCKER_HUB_CREDENTIAL2')]) {
+                      sh "docker login -u baddam -p ${DOCKER_HUB_CREDENTIAL2}"
             }
             sh 'docker push baddam/spring-boot-mongo'
         }
