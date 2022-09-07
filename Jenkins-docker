@@ -42,7 +42,7 @@ pipeline{
             steps{
                  sh 'docker build -t baddam/spring-boot-mongo .'
                  sh 'docker build -t tomcat:${BUILD_NUMBER} .'
-                 sh 'docker run -itd --name devops -p 2900:8080 tomcat:${BUILD_NUMBER}'
+                 sh 'docker run -itd --name devops -p 3500:8080 tomcat:${BUILD_NUMBER}'
              }
          }
         stage('Push Docker Image'){
