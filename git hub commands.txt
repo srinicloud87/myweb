@@ -10,3 +10,5 @@ $ history
     9  git push origin master
    10  git push origin master
    11  history
+
+    origin master
