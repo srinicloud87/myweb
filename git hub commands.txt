@@ -1,0 +1,14 @@
+$ history
+    1  ls
+    2  cd myweb/
+    3  touch surya
+    4  ls
+    5  git add .
+    6  git status
+    7  git commit -m 'a14'
+    8  git push origin master
+    9  git push origin master
+   10  git push origin master
+   11  history
+
+    origin master
