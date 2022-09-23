@@ -12,8 +12,8 @@
 		<docker.image.prefix>kammana</docker.image.prefix>
 		<sonar.host.url>http://54.252.132.90:9000/</sonar.host.url>
                 <project.build.sourceEncoding>UTE-8</project.build.sourceEncoding>
-		<maven.copiler.source>1.7>/maven.compiler.source>
-		<maven.copiler.target>1.7>/maven.compiler.target>
+		<maven.copiler.source>1.8>/maven.compiler.source>
+		<maven.copiler.target>1.8>/maven.compiler.target>
 		
 			
 	</properties>
