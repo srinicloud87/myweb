@@ -10,7 +10,7 @@ pipeline{
     stages{
         stage("Git Checkout"){
             steps{
-                git credentialsId: 'javahome2', url: 'https://github.com/srinicloud87/myweb.git'
+                git credentialsId: 'javahome2', url: 'https://github.com/rj-reddi/myweb.git'
             }
         }
         stage("Maven Build"){
@@ -29,9 +29,9 @@ pipeline{
                             type: 'war'
                        ]
                   ], 
-                  credentialsId: 'nexus3', 
+                  credentialsId: 'admin', 
                   groupId: 'in.javahome', 
-                  nexusUrl: '172.31.47.92:8081', 
+                  nexusUrl: '13.211.52.55:8081', 
                   nexusVersion: 'nexus3', 
                   protocol: 'http', 
                   repository: 'sample-releases', 
@@ -40,17 +40,17 @@ pipeline{
             }
         stage('Build Docker Image'){
             steps{
-                 sh 'docker build -t deepikac2021/spring-boot-mongo .'
+                 sh 'docker build -t baddam/spring-boot-mongo .'
                  sh 'docker build -t tomcat:${BUILD_NUMBER} .'
-                 sh 'docker run -itd --name srini36 -p 2900:8080 tomcat:${BUILD_NUMBER}'
+                 sh 'docker run -itd --name shiv -p 1111:8080 tomcat:${BUILD_NUMBER}'
              }
          }
         stage('Push Docker Image'){
              steps{
-                  withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
-                      sh "docker login -u deepikac2021 -p ${DOCKER_HUB_CREDENTIALS}"
+                  withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIAL2', variable: 'DOCKER_HUB_CREDENTIAL2')]) {
+                      sh "docker login -u baddam -p ${DOCKER_HUB_CREDENTIAL2}"
             }
-            sh 'docker push deepikac2021/spring-boot-mongo'
+            sh 'docker push baddam/spring-boot-mongo'
         }
       }
         
