@@ -46,7 +46,7 @@ pipeline{
                     
                     ssh ec2-user@172.31.35.248 /home/ec2-user/apache-tomcat-9.0.68/bin/shutdown.sh
                     
-                    ssh ec2-use@172.31.35.248 /home/ec2-user/apache-tomcat-9.0.68/bin/startup.sh
+                    ssh ec2-user@172.31.35.248 /home/ec2-user/apache-tomcat-9.0.68/bin/startup.sh
                 
                 """
             }
