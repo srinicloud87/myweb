@@ -10,7 +10,7 @@ pipeline{
     stages{
         stage("Git Checkout"){
             steps{
-                git credentialsId: 'javahome2', url: 'https://github.com/srinicloud87/myweb.git'
+                git credentialsId: 'javahome2', url: 'https://github.com/gopijarapala/myweb.git'
             }
         }
         stage("Maven Build"){
@@ -42,7 +42,7 @@ pipeline{
             steps{
                  sh 'docker build -t deepikac2021/spring-boot-mongo .'
                  sh 'docker build -t tomcat:${BUILD_NUMBER} .'
-                 sh 'docker run -itd --name srini36 -p 2900:8080 tomcat:${BUILD_NUMBER}'
+                 sh 'docker run -itd --name gopij2021 -p 2900:8080 tomcat:${BUILD_NUMBER}'
              }
          }
         stage('Push Docker Image'){
