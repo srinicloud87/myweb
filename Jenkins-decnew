@@ -8,7 +8,7 @@ pipeline{
         stage("Git Checkout"){
             steps{
                 git credentialsId: 'gopihome2', url: 'https://github.com/sivagopinaidu/myweb.git'
-            }
+            }172.31.44.134
         }
         stage("Maven Build"){
             steps{
@@ -22,9 +22,9 @@ pipeline{
                 sh """
                     scp -o StrictHostKeyChecking=no target/myweb.war  ec2-user@172.31.13.112:/home/ec2-user/apache-tomcat-9.0.70/webapps/
                     
-                    ssh ec2-user@172.31.90.81 /home/ec2-user/apache-tomcat-9.0.70/bin/shutdown.sh
+                    ssh ec2-user@172.31.44.134 /home/ec2-user/apache-tomcat-9.0.70/bin/shutdown.sh
                     
-                    ssh ec2-user@172.31.90.81 /home/ec2-user/apache-tomcat-9.0.70/bin/startup.sh
+                    ssh ec2-user@172.31.44.134 /home/ec2-user/apache-tomcat-9.0.70/bin/startup.sh
                 
                 """
             }
