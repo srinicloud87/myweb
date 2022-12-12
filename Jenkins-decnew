@@ -8,7 +8,7 @@ pipeline{
         stage("Git Checkout"){
             steps{
                 git credentialsId: 'gopihome2', url: 'https://github.com/sivagopinaidu/myweb.git'
-            }172.31.25.241
+            }
         }
         stage("Maven Build"){
             steps{
