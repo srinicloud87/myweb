@@ -32,12 +32,12 @@
 	<distributionManagement>
 		 <snapshotRepository>
 		    <id>nexusRepo</id>
-		    <url>http://3.238.101.93:8081/repository/latha/</url>
+		    <url>http://3.238.101.93:8384/repository/latha/</url>
 		 </snapshotRepository>
 		
 		<repository>
 		    <id>nexusRepo</id>
-		    <url>http://3.238.101.93:8081/repository/suresh/</url>
+		    <url>http://3.238.101.93:8384/repository/suresh/</url>
 		</repository>
   	</distributionManagement>
 	
