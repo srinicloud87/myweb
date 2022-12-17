@@ -34,7 +34,7 @@ pipeline{
                   nexusUrl: '172.31.32.224:8081', 
                   nexusVersion: 'nexus3', 
                   protocol: 'http', 
-                  repository: 'vani-releases', 
+                  repository: 'sample-release', 
                   version: '8.2.0'  
               }
             }
