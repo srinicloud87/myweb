@@ -3,12 +3,12 @@ try{
 	    properties([parameters([choice(choices: ['master', 'dev', 'qa', 'staging'], description: 'Choose branch to build and deploy', name: 'gitBranch')]), pipelineTriggers([pollSCM('')])])
     stage('Git Checkout'){
 		git credentialsId: 'github', 
-		    url: 'https://github.com/javahometech/my-app',
+		    url: 'https://github.com/javahometech/myweb',
 			branch: "${params.gitBranch}"
 	}
 	
 	stage('Maven Build'){
-		sh 'mvn clean package'
+		sh 'mvn sonar clean package'
 	}
 	stage('Deploy to Dev'){
 		sh 'mv target/*.war target/myweb.war'
