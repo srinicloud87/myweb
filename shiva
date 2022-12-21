@@ -4,3 +4,4 @@ jenkins
 sonarqube
 docker
 kubernetes
+ci/cd pipeline
