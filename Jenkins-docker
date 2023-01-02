@@ -31,7 +31,7 @@ pipeline{
                   ], 
                   credentialsId: 'nexus3', 
                   groupId: 'in.javahome', 
-                  nexusUrl: '172.31.33.137:8081', 
+                  nexusUrl: '172.31.42.28:8081', 
                   nexusVersion: 'nexus3', 
                   protocol: 'http', 
                   repository: 'sample-releases', 
@@ -40,9 +40,9 @@ pipeline{
             }
         stage('Build Docker Image'){
             steps{
-                 sh 'docker build -t suresh1817/dev .'
+                 sh 'docker build -t suresh1817/qa .'
                  sh 'docker build -t tomcat:${BUILD_NUMBER} .'
-                 sh 'docker run -itd --name madhu -p 700:8080 tomcat:${BUILD_NUMBER}'
+                 sh 'docker run -itd --name mahi -p 600:8080 tomcat:${BUILD_NUMBER}'
              }
          }
         stage('Push Docker Image'){
@@ -50,7 +50,7 @@ pipeline{
                   withCredentials([string(credentialsId: 'docker', variable: 'docker')]) {
                       sh "docker login -u suresh1817 -p ${docker}"
             }
-            sh 'docker push suresh1817/dev'
+            sh 'docker push suresh1817/qa'
         }
       }
         
