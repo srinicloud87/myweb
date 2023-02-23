@@ -13,7 +13,7 @@
 		<sonar.host.url>http://54.196.142.185:9000/</sonar.host.url>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.7</maven.compiler.source>
-		 <maven.compiler.target>1.7</maven.compier.target>
+		<maven.compiler.target>1.7</maven.compiler.target>
 
 	
 	</properties>
