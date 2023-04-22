@@ -4,7 +4,7 @@
 	<groupId>in.javahome</groupId>
 	<artifactId>myweb</artifactId>
 	<packaging>war</packaging>
-	<version>8.2.1</version>
+	<version>8.2.0</version>
 	<name>Java Home myweb</name>
 	<url>http://maven.apache.org</url>
 	
@@ -32,12 +32,12 @@
 	<distributionManagement>
 		 <snapshotRepository>
 		    <id>nexusRepo</id>
-		    <url>http://52.70.38.68/repository/sample-snapshots/</url>
+		    <url>http://54.210.90.150:8081/repository/sample-snapshots/</url>
 		 </snapshotRepository>
 		
 		<repository>
 		    <id>nexusRepo</id>
-		    <url>http://52.70.38.68:8081/repository/sample-releases/</url>
+		    <url>http://54.210.90.150:8081/repository/sample-releases/</url>
 		</repository>
   	</distributionManagement>
 	
