@@ -25,7 +25,7 @@ pipeline{
                        [
                             artifactId: 'myweb', 
                             classifier: '', 
-                            file: "target/myweb-8.2.1.war", 
+                            file: "target/myweb-8.2.0.war", 
                             type: 'war'
                        ]
                   ], 
@@ -35,7 +35,7 @@ pipeline{
                   nexusVersion: 'nexus3', 
                   protocol: 'http', 
                   repository: 'sample-releases', 
-                  version: '8.2.1'  
+                  version: '8.2.0'  
               }
             }
         stage('Build Docker Image'){
