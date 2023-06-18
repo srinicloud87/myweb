@@ -25,22 +25,22 @@ pipeline{
                        [
                             artifactId: 'myweb', 
                             classifier: '', 
-                            file: "target/myweb-8.2.0.war", 
+                            file: "target/myweb-8.2.1.war", 
                             type: 'war'
                        ]
                   ], 
                   credentialsId: 'nexus3', 
                   groupId: 'in.javahome', 
-                  nexusUrl: '172.31.13.100:8081', 
+                  nexusUrl: '172.31.5.107:8081', 
                   nexusVersion: 'nexus3', 
                   protocol: 'http', 
                   repository: 'sample-releases', 
-                  version: '8.2.0'  
+                  version: '8.2.1'  
               }
             }
         stage('Build Docker Image'){
             steps{
-                 sh 'docker build -t kiranmai222/dev .'
+                 sh 'docker build -t kiranuuuu/dev .'
                  sh 'docker build -t tomcat:${BUILD_NUMBER} .'
                  sh 'docker run -itd --name srini26 -p 3900:8080 tomcat:${BUILD_NUMBER}'
              }
@@ -48,9 +48,9 @@ pipeline{
         stage('Push Docker Image'){
              steps{
                   withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
-                      sh "docker login -u sreenu2 -p ${DOCKER_HUB_CREDENTIALS}"
+                      sh "docker login -u kiranuuuu -p ${DOCKER_HUB_CREDENTIALS}"
             }
-            sh 'docker push sreenu2/dev'
+            sh 'docker push kiranuuuu/dev'
         }
       }
         
