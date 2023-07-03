@@ -1,7 +1,7 @@
 <html>
 <body>
-	<h1 style="color: red; font-size: 40px;" align="center">  MY DEVOPS  and AWS MY PRIDE 2050</h1>
-        <h1 style="color: gree; font-size: 25px;" align="center">WELCOME TO DEVOPS</h1>
+	<h1 style="color: blue; font-size: 40px;" align="center">  MY DEVOPS  and AWS MY PRIDE 2050</h1>
+        <h1 style="color: orange; font-size: 25px;" align="center">WELCOME TO DEVOPS</h1>
 
 
 </body>
