@@ -1,0 +1,155 @@
+Hi good morning,
+Myself saritha
+I have completed my masters
+Iam having 4+years of experience On AWS cloud and Devops Tools
+
+
+i used to  Devops tools
+
+ Experience on GIT
+build tool: Maven,NPM,PIP
+continous integration:Jenkins ci/cd
+Iam good at Jekins and Jenkins is automation tool for Continuous INtegration and Continuous Delivery
+Artifacotry:Nexus
+Configuation Management:Ansible
+IAAc:Terraform
+Containets:Docker
+Container orchestration:Kubernetes
+Monitoring:
+prometheus
+grafana
+New Relic
+other tools:
+helm
+Elk
+os:linux
+Scripting :shell scripting
+
+AWS
+vpc 
+ec2
+Route 53
+RDS
+Elastic cache
+SG&NACL
+IAM
+WAF &Sheild
+KMS
+EKS
+SSM
+
+__________________________________
+
+
+
+
+i have worked on different domains
+
+
+_________
+
+
+
+
+WELL,COMING TO MY ROLES AND RESPONSIBILITIES
+____________________________________________
+
+
+Expertise in working with Terraform key features such as Infrastructure as a code,Execution plans, Resource Graphs,
+change automation and extensively used Auto scaling launch configuration templates for launching amazon EC2 instances while deploying microservices.
+
+Design and automate cloud environments at scale using Infrastructure as Code Tools.
+
+Deploying airflow pods using kube operators and helm charts.
+
+Providing services to airflow application pods and also storage (PVC) from specific storage class.
+
+Experienced in AWS platform and the services offered like EC2, S3, RDS, VPCs, Route Tables and Subnets, SNS, ELB, Auto Scaling.
+
+Experienced with Docker containerization and deployed applications over Docker Containers.
+
+Experienced with Docker Containers and Docker  hub registry.
+
+Built images and shipped images to hub regisytry then deployed on production servers using Docker technology.
+
+Performed rolling updates when new source code version is released.
+
+Design and develop fully automated software delivery pipelines.
+
+Understood configuration management with Ansible tool.
+
+
+
+After deploying verifying the apache logs whether application is working or not
+And also monitoring  the disk spaces on Dev,QA,environments.
+
+Iam preparing script for deployment and disk space checking and delete log files
+and also monitoring the server health check by using Nagois(Monitoring tool)
+
+Automated various infrastructure activities like Continuous Deployment, Application Server setup, Stack monitoring using Ansible playbooks
+ and has Integrated Ansible with Jenkins .
+
+Managed and optimize CI (Continuous Integration) tools like Jenkins Install, Configure, Administer Jenkins Continuous Integration ToolProfici
+ent in using all Amazon Web Services including EC2, EBS, IAM, S3, ELB.
+Automated various infrastructure activities like Continuous Deployment, Application Server setup, Stack monitoring using Ansible
+ playbooks and has Integrated Ansible with Jenkins.
+
+Accordingly, designed, developed, documented and implemented Disaster Recovery infrastructure for mission critical servers.
+
+ Implementing new projects builds framework using Jenkins & Maven as build framework tools.Managed and optimize CI (Continuous Integration) tools like Jenkins .
+
+Install, Configure, Administer Jenkins Continuous Integration Tool.Created Docker images using Docker file, worked on Docker container snapshots,
+ removing images and managing Docker volumes.
+
+Provide stable build environments for product development.Scripting & automating tasks using shell for backup, monitoring and file processing.
+Jenkins, Ansible to complete automation from commit to deployment.
+
+Troubleshoot all issues related to Linux Operating System and provide support for
+ all DEV and QA environments.
+
+Creating folders in S3 Bucket and uploading images and files and also managing policies for S3 buckets and 
+Utilized S3 bucket and Glacier for storage and backup on AWS And  maintain buckets and folder permissions.
+
+
+
+Configure Content Delivery Network (CDN) CloudFront using S3 Bucket to improve site performance.Designed and implemented
+ Continuous Integration process using tools like Jenkins with approval from development and other affected teams.
+
+Configuring and Networking of Virtual Private Cloud (VPC).Setup/Managing VPC, Subnets make connection between different zones.
+
+Creating users and providing them with suitable permissions.Account management for work place environment users.Setting up user accounts; assign privileges,
+ and user permissions working with file systems like NFS, FTP installations and of apache web servers.
+
+Configuring Mariadb database, creating users and providing access rights to various users.
+Building customized Amazon Machine Images, taking snapshot on monthly basis for backup purpose.
+ Monitored automated build and continuous software integration process to drive build/release failure resolution. 
+
+ 
+
+
+
+_________________________________________________________________________________________________________________________________
+
+
+
+_______________________________________________________________________________________________
+_________________________________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
