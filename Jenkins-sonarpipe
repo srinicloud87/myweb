@@ -12,7 +12,7 @@ pipeline{
         }
         stage("Maven Build"){
             steps{
-                sh "clean sonar:sonar package"
+                sh 'mvn clean package sonar:sonar'
                 sh "mv target/*.war target/myweb.war"
             }
         }
