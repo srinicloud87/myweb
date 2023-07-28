@@ -42,7 +42,7 @@ pipeline{
             steps{
                  sh 'docker build -t kummara/spring-boot-mongo .'
                  sh 'docker build -t tomcat:${BUILD_NUMBER} .'
-                 sh 'docker run -itd --name obi369 -p 3800:8080 tomcat:${BUILD_NUMBER}'
+                 sh 'docker run -itd --name obi370 -p 5050:8080 tomcat:${BUILD_NUMBER}'
              }
          }
         stage('Push Docker Image'){
