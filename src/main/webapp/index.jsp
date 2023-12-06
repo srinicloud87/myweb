@@ -1,5 +1,5 @@
 <html>
 <body>
-	<h1 style="color: green; font-size: 40px;" align="center">  GANA TECH APP VERSION-58000 </h1>
+	<h1 style="color: green; font-size: 40px;" align="center">  GANA TECHNOLOFY APP VERSION-001 </h1>
 </body>
 </html>
