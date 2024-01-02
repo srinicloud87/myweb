@@ -10,7 +10,7 @@ pipeline{
     stages{
         stage("Git Checkout"){
             steps{
-                git credentialsId: 'javahome2', url: 'https://github.com/srinicloud87/myweb.git'
+                git credentialsId: 'javahome2', url: 'https://github.com/nishithabapanpally/myweb.git'
             }
         }
         stage("Maven Build"){
@@ -31,7 +31,7 @@ pipeline{
                   ], 
                   credentialsId: 'nexus3', 
                   groupId: 'in.javahome', 
-                  nexusUrl: '172.31.33.201:8081', 
+                  nexusUrl: '172.31.41.122:8081', 
                   nexusVersion: 'nexus3', 
                   protocol: 'http', 
                   repository: 'sample-releases', 
@@ -40,15 +40,15 @@ pipeline{
             }
         stage('Build Docker Image'){
             steps{
-                 sh 'docker build -t srinidockerhub87/spring-boot-mongo .'
+                 sh 'docker build -t nishitha1306/spring-boot-database .'
              }
          }
         stage('Push Docker Image'){
              steps{
                   withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
-                      sh "docker login -u srinidockerhub87 -p ${DOCKER_HUB_CREDENTIALS}"
+                      sh "docker login -u nishitha1306 -p ${DOCKER_HUB_CREDENTIALS}"
             }
-            sh 'docker push srinidockerhub87/spring-boot-mongo'
+            sh 'docker push nishitha1306/spring-boot-database'
         }
       }
         stage("Deploy To Kuberates Cluster"){
