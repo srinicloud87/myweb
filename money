@@ -1,0 +1,3 @@
+This is the commit made by cherry-pick without merge
+
+The Git cherry-pick is nothing but it picks a commit from one branch and applying it to another branch without merging.
