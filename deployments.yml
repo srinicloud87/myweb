@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: mywebdeployment
   labels:
-    app: myweb
+    app: srinuwaps
 spec:
   replicas: 6
   selector:
     matchLabels:
-      app: myweb
+      app: srinuwaps
   template:
     metadata:
       labels:
-        app: myweb
+        app: srinuwaps
     spec:
       containers:
       - name: myweb
