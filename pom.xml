@@ -53,7 +53,7 @@
     <plugin>
       <groupId>org.apache.maven.plugins</groupId>
       <artifactId>maven-war-plugin</artifactId>
-      <version>3.8.7</version> <!-- Change the version here -->
+      <version>3.3.1</version> <!-- Change the version here -->
     </plugin>
   </plugins>
 </build>
