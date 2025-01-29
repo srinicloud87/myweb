@@ -10,7 +10,7 @@ pipeline{
     stages{
         stage("Git Checkout"){
             steps{
-                git credentialsId: 'javahome2', url: 'https://github.com/srinicloud87/myweb.git'
+                git credentialsId: 'javahome2', url: 'https://github.com/Sravankumar1988/myweb.git'
             }
         }
         stage("Maven Build"){
@@ -29,10 +29,10 @@ pipeline{
                             type: 'war'
                        ]
                   ], 
-                  credentialsId: 'nexus3', 
+                  credentialsId: 'nexus99', 
                   groupId: 'in.javahome', 
-                  nexusUrl: '172.31.39.22:8081', 
-                  nexusVersion: 'nexus3', 
+                  nexusUrl: '172.31.17.245:8081', 
+                  nexusVersion: 'nexus99', 
                   protocol: 'http', 
                   repository: 'sample-releases', 
                   version: '8.2.0'  
@@ -40,7 +40,7 @@ pipeline{
             }
         stage('Build Docker Image'){
             steps{
-                 sh 'docker build -t srinidockerhub87/spring-boot-mongo .'
+                 sh 'docker build -t sravya1998/spring-boot-mongo .'
                  sh 'docker build -t tomcat:${BUILD_NUMBER} .'
                  sh 'docker run -itd --name srini23 -p 2900:8080 tomcat:${BUILD_NUMBER}'
              }
@@ -48,9 +48,9 @@ pipeline{
         stage('Push Docker Image'){
              steps{
                   withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
-                      sh "docker login -u srinidockerhub87 -p ${DOCKER_HUB_CREDENTIALS}"
+                      sh "docker login -u sravya1998 -p ${DOCKER_HUB_CREDENTIALS}"
             }
-            sh 'docker push srinidockerhub87/spring-boot-mongo'
+            sh 'docker push sravya1998/spring-boot-mongo'
         }
       }
         
