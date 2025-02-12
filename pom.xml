@@ -37,7 +37,7 @@
 		
 		<repository>
 		    <id>nexusRepo</id>
-		    <url>http://57.181.26.207:8081/repository/sample-releases/</url>
+		    <url>http://100.27.185.111:8081/repository/Release_repository/</url>
 		</repository>
   	</distributionManagement>
 	
