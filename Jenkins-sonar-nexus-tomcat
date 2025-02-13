@@ -31,7 +31,7 @@ pipeline{
                   ], 
                   credentialsId: 'nexus99', 
                   groupId: 'in.javahome', 
-                  nexusUrl :'54.204.116.137:8081', 
+                  nexusUrl :'172.31.17.89:8081', 
                   nexusVersion: 'nexus99', 
                   protocol: 'http',172.31.14.113', 
                   repository: 'sample-releases', 
