@@ -33,7 +33,7 @@ pipeline{
                   groupId: 'in.javahome', 
                   nexusUrl :'172.31.17.89:8081', 
                   nexusVersion: 'nexus99', 
-                  protocol: 'http',172.31.14.113', 
+                  protocol: 'http',172.31.17.89', 
                   repository: 'sample-releases', 
                   version: '8.2.0'  
               }
