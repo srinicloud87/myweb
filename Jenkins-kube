@@ -29,10 +29,10 @@ pipeline{
                             type: 'war'
                        ]
                   ], 
-                  credentialsId: 'nexus99', 
+                  credentialsId: 'nexus3', 
                   groupId: 'in.javahome', 
                   nexusUrl: '54.205.175.18:8081', 
-                  nexusVersion: 'nexus99', 
+                  nexusVersion: 'nexus3', 
                   protocol: 'http', 
                   repository: 'sample-releases', 
                   version: '8.2.0'  
