@@ -1,0 +1,121 @@
+---
+- name: Set a counter for a client
+  set_fact:
+    counter: 1
+    workflow_nodes: []
+    awx_workflow_certs: []
+
+- name: Prepare a workflow node schema for {{ client }}
+  set_fact:
+    workflow_nodes: "{{ workflow_nodes | default([]) + [{'identifier': identifier_1, 'inventory': job_inventory, 'related': related, 'unified_job_template': unified_job_template, 'extra_data': extra_data, 'cloud_provider': cloud_provider}] }}"
+    counter: "{{ counter | default(1) | int + 1 | int }}"
+  with_community.general.filetree: "{{ hclnow_config_client_env }}/{{ client }}"
+  when:
+    - env.state == "directory" and env.path.split("/") | length == 1
+    - refresh_cert
+  loop_control:
+    loop_var: env
+    label: "{{ env.path }} <{{ env.state }}>"
+  vars:
+    awx_client_code: "{{ client }}"
+    awx_client_env: "{{ env.path.split('/').pop(0) }}"
+    client_env_base: "{{ awx_client_code }}-{{ awx_client_env }}"
+    default_path_gcp: "{{ hclnow_config_client_env }}/{{ awx_client_code }}/gcp-client-vars.yml"
+    default_path_aws: "{{ hclnow_config_client_env }}/{{ awx_client_code }}/aws-client-vars.yml"
+
+    client_env_path_g: "{{ hclnow_config_client_env }}/{{ awx_client_code }}/{{ awx_client_env }}/gcp-client-vars-env.yml"
+    client_env_path_aws: "{{ hclnow_config_client_env }}/{{ awx_client_code }}/{{ awx_client_env }}/aws-client-vars-env.yml"
+    cloud_provider: "{{ 'aws' if (lookup('file', client_env_path_aws, errors='ignore')) else 'gcp' }}" 
+    default_path: "{{ cloud_provider == 'aws' and default_path_aws or default_path_gcp }}"
+    client_env_path: "{{ cloud_provider == 'aws' and client_env_path_aws or client_env_path_gcp }}"
+    refresh_cert: "{{ (lookup('template', client_env_path, errors='ignore', variable_start_string='[%', variable_end_string='%]') | from_yaml).refresh_certs | default(false) }}"
+    default_infra_type: "{{ (lookup('template', default_path, errors='ignore') | from_yaml).client_infra_type | default(none) }}"
+    env_infra_type: "{{ (lookup('template', client_env_path, errors='ignore', variable_start_string='[%', variable_end_string='%]') | from_yaml).client_infra_type | default(none) }}"
+    awx_infra_code: "{{ env_infra_type if (env_infra_type) else default_infra_type }}"
+    extra_data: "{{ cloud_provider == 'aws' and {'prod_ticket': awx_renew_certs_aws_tickets[awx_client_code][awx_infra_code] | default(''),'infra_code': awx_infra_code,'now_cloud': 'aws'} or {'prod_ticket': awx_renew_certs_tickets[awx_client_code][awx_infra_code] | default('')} }}"
+    
+    job_inventory: "inventory_client_{{ client }}_{{ awx_client_env }}"
+    node_name: "Renew certs for a client {{ client }}"
+    identifier_1: "node-{{ counter | string }}"
+    next_identifier: "{{ counter | int + 1 | int }}"
+    identifier_2: "node-{{ next_identifier | string }}"
+    always_nodes: "{{ [identifier_2] }}"
+    related: "{{ {'always_nodes': always_nodes} }}"
+    unified_job_template: "{{ cloud_provider == 'aws' and {
+      'name': 'Import Certificate to ACM in AWS',
+      'type': 'job_template'
+    } or {
+      'name': 'Create certs for a client',
+      'type': 'job_template'
+    } }}"
+
+- name: print workflow_nodes
+  ansible.builtin.debug:
+    msg:
+      - "workflow_nodes: {{ workflow_nodes }}"
+      - "last_item: {{ workflow_nodes[-1] if workflow_nodes | length > 0 else 'empty' }}"
+  when: workflow_nodes | length > 0
+
+- name: Group workflow_nodes by cloud_provider
+  set_fact:
+    grouped_nodes: "{{ grouped_nodes_list }}"
+  vars:
+    grouped_nodes_list: "[{% for group_key, group_value in workflow_nodes | groupby('cloud_provider') %}{'key': '{{ group_key }}', 'value': {{ group_value | to_json }}}{% if not loop.last %},{% endif %}{% endfor %}]"
+  when: workflow_nodes | length > 0
+
+- name: print grouped_nodes
+  ansible.builtin.debug:
+    msg: "grouped_nodes: {{ grouped_nodes }}"
+  when: workflow_nodes | length > 0
+
+- name: Remove last node related nodes for each cloud_provider
+  set_fact:
+    grouped_nodes: "{{ grouped_nodes_updated }}"
+  vars:
+    grouped_nodes_updated: "[{% for group in grouped_nodes %}{% set last_item = group.value[-1] %}{% set updated_item = last_item | ansible.utils.remove_keys(target=['related']) if last_item is mapping else last_item %}{'key': '{{ group.key }}', 'value': {{ group.value[:-1] | to_json }} + [{{ updated_item | to_json }}]}{% if not loop.last %},{% endif %}{% endfor %}]"
+  when:
+    - workflow_nodes | length > 0
+    - grouped_nodes | length > 0
+
+- name: print updated grouped_nodes
+  ansible.builtin.debug:
+    msg: "updated_grouped_nodes: {{ grouped_nodes }}"
+  when: workflow_nodes | length > 0
+
+- name: Prepare workflow templates for AWS and GCP certs renewal
+  set_fact:
+    awx_workflow_certs: "{{ awx_workflow_certs + [{'name': name, 'organization': organization, 'ask_inventory_on_launch': false, 'ask_scm_branch_on_launch': false, 'state': state, 'description': description, 'workflow_nodes': nodes, 'schedule': schedule, 'allow_simultaneous': allow_simultaneous}] }}"
+  loop: "{{ grouped_nodes }}"
+  loop_control:
+    loop_var: group
+    label: "{{ group.key }}"
+  vars:
+    cloud_provider: "{{ group.key }}"
+    nodes: "{{ group.value | select('defined') | select('mapping') | list }}"
+    name: "Renew certs for a client {{ client }} {{ cloud_provider }}"
+    organization: "{{ default_support_org }}"
+    state: present
+    description: "This workflow renews certs for a client on {{ cloud_provider | upper }}. This workflow is scheduled to run daily. Driven by var: refresh_certs | bool set in {{ cloud_provider }}-client-vars-env.yml for the environment in a particular client."
+    schedule: "{{ ['Runs daily certs'] }}"
+    allow_simultaneous: false
+  when:
+    - workflow_nodes | length > 0
+    - group.value | length > 0
+
+- name: Create renew certs workflow for {{ client }}
+  include_tasks:
+    file: awx-create-workflow.yml
+  loop: "{{ awx_workflow_certs | list }}"
+  loop_control:
+    loop_var: job
+    label: "{{ job.name }}"
+  when: workflow_nodes | length > 0
+
+- name: Schedule renew certs workflow for {{ client }}
+  include_tasks:
+    file: awx-create-schedule.yml
+  loop: "{{ awx_workflow_certs | list }}"
+  loop_control:
+    loop_var: job
+    label: "{{ job.name }}"
+  when: workflow_nodes | length > 0
