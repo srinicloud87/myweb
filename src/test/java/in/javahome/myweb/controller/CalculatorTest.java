@@ -1,3 +1,5 @@
+
+
 package in.javahome.myweb.controller;
 
 import junit.framework.Assert;
@@ -12,3 +14,60 @@ public class CalculatorTest extends TestCase {
 		Assert.assertEquals(cal.multiply(10, 20), 200);
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
